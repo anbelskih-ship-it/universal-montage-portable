@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Универсал Монтаж - мастер работ</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">Портативное офлайн ПО</p>
+      <h1>Универсал Монтаж: мастер выполнения работ</h1>
+    </div>
+    <div class="top-actions">
+      <a id="website-link" href="https://www.yniversalmontag.ru/" target="_blank" rel="noreferrer">Сайт</a>
+      <a id="telegram-link" href="https://t.me/yniversalmontag" target="_blank" rel="noreferrer">Telegram</a>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="panel task-panel">
+      <div class="section-head">
+        <h2>1. ТЗ</h2>
+        <button id="new-task" type="button">Очистить</button>
+      </div>
+
+      <form id="guide-form" class="guide-form">
+        <label class="wide">Вид работ
+          <select name="workType" id="work-type"></select>
+        </label>
+        <label>Клиент<input name="client" placeholder="Клиент"></label>
+        <label>Объект<input name="object" placeholder="Адрес / объект"></label>
+        <label>Ширина, м<input name="width" type="number" min="0" step="0.01" value="1.4"></label>
+        <label>Высота, м<input name="height" type="number" min="0" step="0.01" value="1.2"></label>
+        <label>Длина, м<input name="length" type="number" min="0" step="0.01" value="0"></label>
+        <label>Кол-во<input name="quantity" type="number" min="1" step="1" value="1"></label>
+        <label>Швы, м<input name="seamLength" type="number" min="0" step="0.01" value="0"></label>
+
+        <fieldset class="flags wide">
+          <legend>Условия</legend>
+          <label><input name="outdoor" type="checkbox" checked> улица</label>
+          <label><input name="slope" type="checkbox"> уклон</label>
+          <label><input name="rainRisk" type="checkbox"> косой дождь</label>
+          <label><input name="leak" type="checkbox"> протечка</label>
+          <label><input name="dismantling" type="checkbox"> демонтаж</label>
+          <label><input name="paint" type="checkbox"> покраска</label>
+        </fieldset>
+
+        <label class="wide">Комментарий<input name="notes" placeholder="Коротко: что важно не забыть"></label>
+      </form>
+    </section>
+
+    <section class="panel guide-panel">
+      <div class="section-head">
+        <div>
+          <h2>2. Гайд</h2>
+          <p id="guide-title" class="muted"></p>
+        </div>
+        <button id="export-sheet" type="button">Экспорт листа</button>
+      </div>
+
+      <div class="progress-block">
+        <div class="progress-text"><span id="progress-label">0%</span><span id="progress-count">0/0</span></div>
+        <div class="progress-bar"><div id="progress-fill"></div></div>
+      </div>
+
+      <ol id="guide-steps" class="step-list"></ol>
+    </section>
+
+    <section class="panel calc-panel">
+      <div class="section-head">
+        <h2>3. Расчет</h2>
+      </div>
+      <div id="calc-grid" class="calc-grid"></div>
+      <h3>Материалы</h3>
+      <ul id="materials" class="materials"></ul>
+      <h3>Риски</h3>
+      <ul id="risks" class="materials"></ul>
+    </section>
+
+    <section class="panel history-panel">
+      <div class="section-head table-head">
+        <h2>Листы заданий</h2>
+        <div class="tools">
+          <input id="search" type="search" placeholder="Поиск">
+          <button id="save-task" type="button">Сохранить лист</button>
+          <button id="export-csv" type="button">Экспорт CSV</button>
+          <label class="file-button">Импорт CSV<input id="import-file" type="file" accept=".csv,text/csv"></label>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Номер</th>
+              <th>Клиент</th>
+              <th>Объект</th>
+              <th>Работы</th>
+              <th>Прогресс</th>
+              <th>Комментарий</th>
+            </tr>
+          </thead>
+          <tbody id="request-rows"></tbody>
+        </table>
+      </div>
+      <p id="empty-state" class="empty" hidden>Сохраненных листов нет.</p>
+    </section>
+
+    <section class="panel settings-panel">
+      <div class="section-head">
+        <h2>Настройки</h2>
+      </div>
+      <form id="settings-form" class="settings-form">
+        <label>Название<input name="companyName"></label>
+        <label>Ответственный<input name="manager"></label>
+        <label>Сайт<input name="website" type="url"></label>
+        <label>Telegram<input name="telegram" type="url"></label>
+        <label class="wide">Внешний API endpoint<input name="apiEndpoint" type="url" placeholder="Необязательно"></label>
+        <button type="submit">Сохранить</button>
+        <button id="api-test" type="button">Проверить API</button>
+      </form>
+      <p id="integration-status" class="integration-status"></p>
+    </section>
+  </main>
+
+  <script type="module" src="src/app.js"></script>
+</body>
+</html>
