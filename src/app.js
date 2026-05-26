@@ -88,9 +88,13 @@ function loadJson(key, fallback) {
 }
 
 function save() {
-  localStorage.setItem(REQUESTS_KEY, JSON.stringify(state.requests));
-  localStorage.setItem(SETTINGS_KEY, JSON.stringify(state.settings));
-  localStorage.setItem(COMPLETED_KEY, JSON.stringify([...state.completed]));
+  try {
+    localStorage.setItem(REQUESTS_KEY, JSON.stringify(state.requests));
+    localStorage.setItem(SETTINGS_KEY, JSON.stringify(state.settings));
+    localStorage.setItem(COMPLETED_KEY, JSON.stringify([...state.completed]));
+  } catch {
+    // Some locked-down file:// environments disable localStorage.
+  }
 }
 
 function init() {
@@ -291,4 +295,12 @@ function escapeHtml(value) {
   }[char]));
 }
 
-init();
+try {
+  init();
+} catch (error) {
+  console.error(error);
+  const guideSteps = document.querySelector('#guide-steps');
+  if (guideSteps) {
+    guideSteps.innerHTML = '<li><label><input type="checkbox"><span>Открыть файл UniversalMontage-WorkGuide.html из этой же папки</span></label></li>';
+  }
+}

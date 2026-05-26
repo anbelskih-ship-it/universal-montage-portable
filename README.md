@@ -5,7 +5,7 @@
 ## Как запустить
 
 1. Скопировать папку `universal-montage-portable` на компьютер или флешку.
-2. На Windows открыть `Запустить программу.cmd` или `Start-Windows.bat`.
+2. На Windows открыть `START.cmd` или `Start-Windows.bat`.
 3. На macOS открыть `Start-mac.command`.
 4. Резервный вариант: открыть файл `start.html` двойным кликом в современном браузере.
 5. Выбрать вид работ, отметить условия объекта и пройти технологический гайд.
@@ -27,7 +27,10 @@
 
 - `start.html` - точка запуска приложения.
 - `Start-Windows.bat` - запуск приложения на Windows.
+- `START.cmd` - основной запуск на Windows.
+- `START_APP_WINDOW.cmd` - запуск в отдельном окне Edge/Chrome.
 - `Запустить программу.cmd` - русскоязычный файл запуска на Windows.
+- `UniversalMontage-WorkGuide.html` - самодостаточный файл приложения для запуска с флешки.
 - `Start-mac.command` - запуск приложения на macOS.
 - `README_FOR_WINDOWS.txt` - короткая инструкция для получателя архива.
 - `SOFTWARE_PASSPORT.md` - паспорт программного продукта.

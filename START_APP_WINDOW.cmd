@@ -1,14 +1,17 @@
 @echo off
 setlocal
 cd /d "%~dp0"
-if not exist "start.html" (
-  echo File start.html not found.
+set "TARGET=start.html"
+if exist "UniversalMontage-WorkGuide.html" set "TARGET=UniversalMontage-WorkGuide.html"
+
+if not exist "%TARGET%" (
+  echo Application file not found.
   echo Please unpack the whole archive first, then run this file from the unpacked folder.
   pause
   exit /b 1
 )
 
-set "APP=%CD%\start.html"
+set "APP=%CD%\%TARGET%"
 set "URL=file:///%APP:\=/%"
 
 set "EDGE=%ProgramFiles(x86)%\Microsoft\Edge\Application\msedge.exe"
